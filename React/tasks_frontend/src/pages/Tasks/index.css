@@ -1,0 +1,13 @@
+.task-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-header Button {
+    height: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}

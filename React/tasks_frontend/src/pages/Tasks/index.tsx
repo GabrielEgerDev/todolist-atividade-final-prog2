@@ -1,8 +1,11 @@
 import React, { useState, useEffect, ReactChild, ReactChildren } from 'react';
 import { Badge, Table, Button } from 'react-bootstrap';
-import api from '../../services/api'
+import { useNavigate } from 'react-router-dom';
+import api from '../../services/api';
 
-import moment from 'moment'
+import moment from 'moment';
+
+import './index.css';
 
 interface ITask {
     id: number;
@@ -16,6 +19,7 @@ interface ITask {
 const Tasks: React.FC = () => {
 
     const [tasks, setTasks] = useState<ITask[]>([])
+    let navigate = useNavigate()
 
     useEffect(() => {
         loadTasks()
@@ -29,13 +33,25 @@ const Tasks: React.FC = () => {
     }
 
     function formateDate(date: Date) {
-        return moment(date).format("DD/MM/YY - HH:MM")
+        return moment(date).format("DD/MM/YY - HH:mm")
+    }
+
+    function newTask() {
+        navigate('/tarefas_cadastro')
+    }
+
+    function editTask(id: number) {
+        navigate(`/tarefas_cadastro/${id}`)
     }
 
     return(
         <div className="container">
             <br/>
-            <h1>Tasks Page</h1>
+            <div className="task-header">
+                <h1>Tasks Page</h1>
+                <Button size="sm" variant="dark" onClick={newTask}>ADICIONAR TAREFA</Button>
+            </div>
+            
             <br/>
             <Table striped bordered hover className='text-center'>
                 <thead>
@@ -61,7 +77,7 @@ const Tasks: React.FC = () => {
                                 </Badge>
                                 </></td>
                                 <td><>
-                                    <Button size="sm" variant="secondary">Editar</Button>{' '}
+                                    <Button size="sm" variant="secondary" onClick={() => editTask(task.id)}>Editar</Button>{' '}
                                     <Button size="sm" variant="primary">Visualizar</Button>{' '}
                                     <Button size="sm" variant="success">Finalizar</Button>{'  '}
                                     <Button size="sm" variant="danger">Remover</Button>{' '}
