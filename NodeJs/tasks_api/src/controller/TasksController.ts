@@ -64,6 +64,22 @@ export const finishTask = async (request: Request, response: Response) => {
 
 };
 
+// Reativando tasks
+export const unfinishTask = async (request: Request, response: Response) => {
+    const id = Number(request.params.id)
+    const task = await AppDataSource.getRepository(Tasks).update(id, {
+        finished: false
+    })
+
+    if (task.affected == 1) {
+        const taskUpdated = await AppDataSource.getRepository(Tasks).findOneBy({id})
+        return response.json({message: "Task unfinished"})
+    }
+
+    return response.status(404).json({ message: "Task not found!"})
+
+};
+
 // Deletando tasks
 export const deleteTask = async (request: Request, response: Response) => {
     const id = Number(request.params.id)

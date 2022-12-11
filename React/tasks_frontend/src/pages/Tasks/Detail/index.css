@@ -1,0 +1,34 @@
+.task-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-header Button {
+    height: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+span {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+span .badge {
+    font-size: 11px;
+    margin-left: 10px;
+}
+

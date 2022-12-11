@@ -26,14 +26,28 @@ const Tasks: React.FC = () => {
     }, [])
 
     async function loadTasks() {
-
         const response = await api.get('/tasks')
         console.log(response)
         setTasks(response.data)
     }
 
+    async function finishTask(id: number) {
+        await api.patch(`/tasks/f/${id}`)
+        loadTasks()
+    }
+
+    async function unfinishTask(id: number) {
+        await api.patch(`/tasks/unf/${id}`)
+        loadTasks()
+    }
+
+    async function deleteTask(id: number) {
+        await api.delete(`/tasks/${id}`)
+        loadTasks()
+    }
+
     function formateDate(date: Date) {
-        return moment(date).format("DD/MM/YY - HH:mm")
+        return moment(date).format("DD/MM/YYYY - HH:mm")
     }
 
     function newTask() {
@@ -44,15 +58,18 @@ const Tasks: React.FC = () => {
         navigate(`/tarefas_cadastro/${id}`)
     }
 
+    function viewTask(id: number) {
+        navigate(`/tarefas/${id}`)
+    }
+
     return(
         <div className="container">
-            <br/>
+            <br/><br/>
             <div className="task-header">
                 <h1>Tasks Page</h1>
                 <Button size="sm" variant="dark" onClick={newTask}>ADICIONAR TAREFA</Button>
             </div>
-            
-            <br/>
+            <br/><br/>
             <Table striped bordered hover className='text-center'>
                 <thead>
                     <tr>
@@ -72,15 +89,16 @@ const Tasks: React.FC = () => {
                                 <td> <>{task.title}</> </td>
                                 <td> <>{formateDate(task.updated_at)}</> </td>
                                 <td><>
-                                <Badge bg={ task.finished ? "success" : "warning" } text="dark">
+                                <Badge bg={ task.finished ? "success" : "warning" } text={ task.finished ? "light" : "dark" }>
                                     { task.finished ? "FINALIZADO" : "PENDENTE" }
                                 </Badge>
                                 </></td>
                                 <td><>
-                                    <Button size="sm" variant="secondary" onClick={() => editTask(task.id)}>Editar</Button>{' '}
-                                    <Button size="sm" variant="primary">Visualizar</Button>{' '}
-                                    <Button size="sm" variant="success">Finalizar</Button>{'  '}
-                                    <Button size="sm" variant="danger">Remover</Button>{' '}
+                                    <Button size="sm" disabled={task.finished} variant="secondary" onClick={() => editTask(task.id)}>Editar</Button>{' '}
+                                    <Button size="sm" variant="primary" onClick={() => viewTask(task.id)}>Visualizar</Button>{' '}
+                                    <Button size="sm" className={task.finished ? "d-none" : ""} disabled={task.finished} variant="success" onClick={() => finishTask(task.id)}>Finalizar</Button>{'  '}
+                                    <Button size="sm" className={!task.finished ? "d-none" : ""} disabled={!task.finished} variant="warning" onClick={() => unfinishTask(task.id)}>Reativar</Button>{'  '}
+                                    <Button size="sm" variant="danger" onClick={() => deleteTask(task.id)}>Remover</Button>{' '}
                                 </></td>
                             </tr>
                         ))

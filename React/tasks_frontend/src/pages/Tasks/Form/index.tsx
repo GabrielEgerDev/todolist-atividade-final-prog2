@@ -60,12 +60,12 @@ const Tasks: React.FC = () => {
 
     return(
         <div className="container">
-            <br/>
+            <br/><br/>
             <div className="task-header">
                 <h1>New Task</h1>
                 <Button size="sm" variant="dark" onClick={back}>VOLTAR</Button>
             </div>
-            <br/>
+            <br/><br/>
 
             <div className="container">
                 <Form onSubmit={onSubmit}>
