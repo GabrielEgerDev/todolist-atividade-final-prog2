@@ -1,0 +1,19 @@
+.campoLogin {
+    width: 100%;
+}
+
+.loginPage {
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.loginPage h1 {
+    align-self: center;
+}
+
+span {
+    font-size: 16px;
+    text-align: justify;
+}
