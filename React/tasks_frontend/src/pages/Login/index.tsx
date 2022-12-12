@@ -31,8 +31,8 @@ export const Login = () => {
             <br /><br />
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>E-mail</Form.Label>
-                    <Form.Control className="campoLogin" type="email" placeholder="Coloque seu e-mail" value={email} onChange={e => setEmail(e.target.value)}/>
+                    <Form.Label>Usuário</Form.Label>
+                    <Form.Control className="campoLogin" type="text" placeholder="Coloque seu usuário" value={email} onChange={e => setEmail(e.target.value)}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
