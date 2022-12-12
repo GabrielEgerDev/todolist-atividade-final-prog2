@@ -5,12 +5,19 @@ Projeto criado para a finalização da disciplina de programação II ministrada
 # Tecnologias utilizadas no projeto
 
 ✅ HTML/CSS/Javascript
+
 ✅ NodeJs
+
 ✅ TypeScript
+
 ✅ CRUD - Create, Read, Update, Delete
+
 ✅ Frontend/Backend
+
 ✅ ReactJS
+
 🔵 Autenticação (1/2)
+
 
 # Vídeo do projeto
 
